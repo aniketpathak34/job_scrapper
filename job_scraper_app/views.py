@@ -43,8 +43,12 @@ def scrape_jobs(request):
     average_salary = calculate_average_salary() 
     salaries = []
     # Initialize the WebDriver (you need to have the appropriate browser driver installed)
-    driver = webdriver.Chrome()  # You can use other drivers like Firefox or Edge
+    chrome_binary_path = '/usr/bin/chromium-browser'
 
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = chrome_binary_path
+
+    driver = webdriver.Chrome(options=chrome_options)
     url = "https://in.indeed.com/jobs?q=python+developer&l=navi+mumbai%2C+maharashtra&from=searchOnHP&vjk=f34e3de8b2c4cb4b"
 
     driver.get(url)
