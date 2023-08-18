@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = 'django-insecure-ne5czh6hnh*538h(fg8!56&p(r$ghzx+kzt!u(^k(gw@jqz(ie
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -74,15 +76,20 @@ WSGI_APPLICATION = 'job_scraper_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'scrapping',
+#         'USER': 'Aniket',
+#         'PASSWORD': '264538',
+#         'HOST': 'localhost',  # Or the hostname where your PostgreSQL server is located
+#         'PORT': '5432',       # The default PostgreSQL port
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'scrapping',
-        'USER': 'Aniket',
-        'PASSWORD': '264538',
-        'HOST': 'localhost',  # Or the hostname where your PostgreSQL server is located
-        'PORT': '5432',       # The default PostgreSQL port
-    }
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
